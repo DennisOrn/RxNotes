@@ -22,22 +22,23 @@ class ViewController: UIViewController {
 
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.setRightBarButton(UIBarButtonItem(barButtonSystemItem: .add,
-                                                         target: viewModel,
-                                                         action: #selector(viewModel.addNote)), animated: false)
+                                                         target: viewModel.model,
+                                                         action: #selector(viewModel.model.addNote)), animated: false)
         title = "Notes"
 
-        viewModel.dataSource.asObservable()
+
+        viewModel.model.dataSource.asObservable()
             .bind(to: tableView.rx.items(cellIdentifier: "Cell", cellType: UITableViewCell.self)) {
                 row, element, cell in
                 cell.textLabel?.text = "\(element)"
             }
             .disposed(by: disposeBag)
 
-        tableView.rx
-            .itemSelected
-            .subscribe { indexPath in
-                print(indexPath)
-            }
-            .disposed(by: disposeBag)
+//        tableView.rx
+//            .itemSelected
+//            .subscribe { indexPath in
+//                print(indexPath)
+//            }
+//            .disposed(by: disposeBag)
     }
 }
