@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  NoteListViewController.swift
 //  RxNotes
 //
 //  Created by Dennis Örnberg on 2018-02-25.
@@ -10,7 +10,7 @@ import RxSwift
 import RxCocoa
 import UIKit
 
-class ViewController: UIViewController {
+class NoteListViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
 
@@ -20,6 +20,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        // TODO: clicking on the notch makes the list scroll too far up
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.setRightBarButton(UIBarButtonItem(barButtonSystemItem: .add,
                                                          target: viewModel.model,
