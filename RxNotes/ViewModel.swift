@@ -13,12 +13,7 @@ class ViewModel {
 
     let dataSource = Variable(["one", "two", "three"])
 
-    init() {
-        print("init")
-        DispatchQueue.main.async {
-            Thread.sleep(forTimeInterval: 4)
-            self.dataSource.value.append("four")
-            print("after sleep")
-        }
+    @objc func addNote() {
+        print("addNote")
     }
 }

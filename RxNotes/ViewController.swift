@@ -20,6 +20,12 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationItem.setRightBarButton(UIBarButtonItem(barButtonSystemItem: .add,
+                                                         target: viewModel,
+                                                         action: #selector(viewModel.addNote)), animated: false)
+        title = "Notes"
+
         viewModel.dataSource.asObservable()
             .bind(to: tableView.rx.items(cellIdentifier: "Cell", cellType: UITableViewCell.self)) {
                 row, element, cell in
