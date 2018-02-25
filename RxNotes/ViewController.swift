@@ -27,5 +27,12 @@ class ViewController: UIViewController {
                 cell.textLabel?.text = "\(element)"
             }
             .disposed(by: disposeBag)
+
+        tableView.rx
+            .itemSelected
+            .subscribe { indexPath in
+                print(indexPath)
+            }
+            .disposed(by: disposeBag)
     }
 }
