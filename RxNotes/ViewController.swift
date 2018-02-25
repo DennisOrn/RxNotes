@@ -14,14 +14,13 @@ class ViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
 
-    let items = Observable.just(["one", "two", "three"])
-
+    let viewModel = ViewModel()
     let disposeBag = DisposeBag()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        items
+        viewModel.dataSource.asObservable()
             .bind(to: tableView.rx.items(cellIdentifier: "Cell", cellType: UITableViewCell.self)) {
                 row, element, cell in
                 cell.textLabel?.text = "\(element)"
