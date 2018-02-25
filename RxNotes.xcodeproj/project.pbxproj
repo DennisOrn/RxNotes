@@ -16,7 +16,6 @@
 		4B2710892042C2EE00C38608 /* RxNotesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2710882042C2EE00C38608 /* RxNotesUITests.swift */; };
 		4B27E6A92042E5D1000BC10A /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B27E6A82042E5D1000BC10A /* ViewModel.swift */; };
 		4B27E6EC2042FBED000BC10A /* RxNotes.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4B27E6EA2042FBED000BC10A /* RxNotes.xcdatamodeld */; };
-		4B96BC1320430E6A0028C6CF /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B96BC1220430E6A0028C6CF /* Model.swift */; };
 		4BCDCFB220433AB800920880 /* Note+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BCDCFB120433AB800920880 /* Note+CoreDataClass.swift */; };
 		4BCDCFB420433AC600920880 /* Note+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BCDCFB320433AC600920880 /* Note+CoreDataProperties.swift */; };
 		4BCDCFB820433D3C00920880 /* NoteListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BCDCFB720433D3C00920880 /* NoteListViewController.swift */; };
@@ -58,7 +57,6 @@
 		4B27108A2042C2EE00C38608 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4B27E6A82042E5D1000BC10A /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		4B27E6EB2042FBED000BC10A /* RxNotes.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = RxNotes.xcdatamodel; sourceTree = "<group>"; };
-		4B96BC1220430E6A0028C6CF /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		4BCDCFB120433AB800920880 /* Note+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Note+CoreDataClass.swift"; sourceTree = "<group>"; };
 		4BCDCFB320433AC600920880 /* Note+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Note+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		4BCDCFB720433D3C00920880 /* NoteListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteListViewController.swift; sourceTree = "<group>"; };
@@ -168,7 +166,6 @@
 		4B949E79204339E2005AFBA8 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				4B96BC1220430E6A0028C6CF /* Model.swift */,
 				4B27E6EA2042FBED000BC10A /* RxNotes.xcdatamodeld */,
 				4BCDCFB120433AB800920880 /* Note+CoreDataClass.swift */,
 				4BCDCFB320433AC600920880 /* Note+CoreDataProperties.swift */,
@@ -504,7 +501,6 @@
 			files = (
 				4BCDCFB820433D3C00920880 /* NoteListViewController.swift in Sources */,
 				4BCDCFBA20433DC100920880 /* NoteDetailViewController.swift in Sources */,
-				4B96BC1320430E6A0028C6CF /* Model.swift in Sources */,
 				4BCDCFB420433AC600920880 /* Note+CoreDataProperties.swift in Sources */,
 				4B27E6A92042E5D1000BC10A /* ViewModel.swift in Sources */,
 				4B2710692042C2ED00C38608 /* AppDelegate.swift in Sources */,
