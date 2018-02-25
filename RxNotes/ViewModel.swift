@@ -12,26 +12,34 @@ import RxCocoa
 
 class ViewModel {
 
-    let dataSource = Variable(["one", "two", "three"])
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    let dataSource = Variable<[String]>([])
+
+    init() {
+        refreshDataSource()
+    }
+
+    func refreshDataSource() {
+
+        let context = appDelegate.persistentContainer.viewContext
+        context.perform {
+
+            let fetchRequest: NSFetchRequest<Note> = Note.fetchRequest()
+            if let notes = try? fetchRequest.execute() {
+                self.dataSource.value = notes.map { $0.text! }
+            }
+        }
+    }
 
     @objc func addNote() {
 
-        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.newBackgroundContext()
-
+        let context = appDelegate.persistentContainer.newBackgroundContext()
         context.perform {
 
             let note = Note(context: context)
-            note.text = "asd"
-
+            note.text = "Test"
             try? context.save()
-            print("note added")
-
-
-
-
-            let fetchRequest: NSFetchRequest<Note> = Note.fetchRequest()
-            let count = try? fetchRequest.execute().count
-            print(count)
+            self.refreshDataSource()
         }
     }
 }
