@@ -34,11 +34,11 @@ class ViewController: UIViewController {
             }
             .disposed(by: disposeBag)
 
-//        tableView.rx
-//            .itemSelected
-//            .subscribe { indexPath in
-//                print(indexPath)
-//            }
-//            .disposed(by: disposeBag)
+        tableView.rx
+            .itemSelected
+            .subscribe { indexPath in
+                self.performSegue(withIdentifier: "View note", sender: nil)
+            }
+            .disposed(by: disposeBag)
     }
 }
