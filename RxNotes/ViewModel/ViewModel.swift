@@ -28,6 +28,7 @@ class ViewModel {
             if let notes = try? fetchRequest.execute() {
                 self.dataSource.value = notes.map { $0.text! }
             }
+            print("REFRESHED DATA SOURCE")
         }
     }
 
