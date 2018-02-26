@@ -15,6 +15,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+
+        // TODO: core data is cleared on app start, remove this later
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Note")
+        let request = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+        try! persistentContainer.viewContext.execute(request)
+
         return true
     }
 

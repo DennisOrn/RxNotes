@@ -42,7 +42,6 @@ class NoteDetailViewController: UIViewController {
                 print("onError") // TODO: not needed
             }, onCompleted: {
                 print("onCompleted")
-                self.viewModel.refreshDataSource()
             }, onDisposed: {
                 print("onDisposed") // TODO: not needed
             })
@@ -61,6 +60,8 @@ class NoteDetailViewController: UIViewController {
             self.note?.text = text
             try? context.save()
             print("SAVED")
+
+            self.viewModel.refreshDataSource()
         }
     }
 }
