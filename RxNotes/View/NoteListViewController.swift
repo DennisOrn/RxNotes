@@ -12,6 +12,7 @@ import UIKit
 
 class NoteListViewController: UIViewController {
 
+    @IBOutlet weak var addButton: UIBarButtonItem!
     @IBOutlet weak var tableView: UITableView!
 
     let viewModel = ViewModel()
@@ -22,24 +23,31 @@ class NoteListViewController: UIViewController {
 
         // TODO: clicking on the notch makes the list scroll too far up
         navigationController?.navigationBar.prefersLargeTitles = true
-        navigationItem.setRightBarButton(UIBarButtonItem(barButtonSystemItem: .add,
-                                                         target: viewModel,
-                                                         action: #selector(viewModel.addNote)), animated: false)
         title = "Notes"
 
+        addButton.rx.tap
+            .subscribe { indexPath in
+                self.performSegue(withIdentifier: "Note detail", sender: nil)
+            }
+            .disposed(by: disposeBag)
 
         viewModel.dataSource.asObservable()
-            .bind(to: tableView.rx.items(cellIdentifier: "Cell", cellType: UITableViewCell.self)) {
-                row, element, cell in
+            .bind(to: tableView.rx.items(cellIdentifier: "Cell", cellType: UITableViewCell.self)) { row, element, cell in
                 cell.textLabel?.text = "\(element)"
             }
             .disposed(by: disposeBag)
 
-        tableView.rx
-            .itemSelected
-            .subscribe { indexPath in
-                self.performSegue(withIdentifier: "View note", sender: nil)
-            }
-            .disposed(by: disposeBag)
+//        tableView.rx.itemSelected
+//            .subscribe { indexPath in
+//                self.performSegue(withIdentifier: "View note", sender: nil)
+//            }
+//            .disposed(by: disposeBag)
+    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "Note detail" {
+            guard let destinationVC = segue.destination as? NoteDetailViewController else { return }
+            destinationVC.viewModel = viewModel
+        }
     }
 }

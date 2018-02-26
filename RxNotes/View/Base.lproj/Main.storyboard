@@ -51,10 +51,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <navigationItem key="navigationItem" id="EVc-4U-xlQ"/>
+                    <navigationItem key="navigationItem" id="EVc-4U-xlQ">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="GvT-u9-Ea7"/>
+                    </navigationItem>
                     <connections>
+                        <outlet property="addButton" destination="GvT-u9-Ea7" id="JQq-DV-PWz"/>
                         <outlet property="tableView" destination="Cda-Wd-S3L" id="fsS-c0-8Rp"/>
-                        <segue destination="s9w-V6-ItQ" kind="show" identifier="View note" id="EYN-cY-xZK"/>
+                        <segue destination="s9w-V6-ItQ" kind="show" identifier="Note detail" id="EYN-cY-xZK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
