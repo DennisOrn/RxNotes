@@ -27,6 +27,8 @@ class NoteDetailViewController: UIViewController {
 
         navigationItem.largeTitleDisplayMode = .never
 
+        textView.text = text.value
+
         textView.rx.text.orEmpty
             .bind(to: text)
             .disposed(by: disposeBag)
@@ -35,14 +37,7 @@ class NoteDetailViewController: UIViewController {
             .distinctUntilChanged()
             .debounce(1, scheduler: MainScheduler.instance) // TODO: what are the differences between different schedulers?
             .subscribe(onNext: { string in
-                print("onNext")
                 self.save(text: string)
-            }, onError: { error in
-                print("onError") // TODO: not needed
-            }, onCompleted: {
-                print("onCompleted")
-            }, onDisposed: {
-                print("onDisposed") // TODO: not needed
             })
             .disposed(by: disposeBag)
     }
