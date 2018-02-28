@@ -39,7 +39,7 @@ class NoteListViewController: UIViewController {
 
 //        tableView.rx.itemSelected
 //            .subscribe { indexPath in
-//                self.performSegue(withIdentifier: "View note", sender: nil)
+//                self.performSegue(withIdentifier: "Note detail", sender: indexPath)
 //            }
 //            .disposed(by: disposeBag)
     }
@@ -48,6 +48,9 @@ class NoteListViewController: UIViewController {
         if segue.identifier == "Note detail" {
             guard let destinationVC = segue.destination as? NoteDetailViewController else { return }
             destinationVC.viewModel = viewModel
+//            if let indexPath = sender as? IndexPath {
+//                destinationVC.text.value = tableView.cellForRow(at: indexPath)?.textLabel?.text ?? ""
+//            }
         }
     }
 }

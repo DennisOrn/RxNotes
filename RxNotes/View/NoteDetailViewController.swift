@@ -33,7 +33,6 @@ class NoteDetailViewController: UIViewController {
 
         text.asObservable()
             .distinctUntilChanged()
-            .filter { !$0.isEmpty }
             .debounce(1, scheduler: MainScheduler.instance) // TODO: what are the differences between different schedulers?
             .subscribe(onNext: { string in
                 print("onNext")
@@ -53,14 +52,22 @@ class NoteDetailViewController: UIViewController {
         let context = appDelegate.persistentContainer.viewContext
         context.perform {
 
+            // TODO: refactor this?
+            if text.isEmpty {
+                if self.note != nil {
+                    context.delete(self.note)
+                    self.note = nil
+                    self.viewModel.refreshDataSource()
+                }
+                return
+            }
+
             if self.note == nil {
                 self.note = Note(context: context)
             }
 
             self.note?.text = text
             try? context.save()
-            print("SAVED")
-
             self.viewModel.refreshDataSource()
         }
     }
