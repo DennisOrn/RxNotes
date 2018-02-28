@@ -14,12 +14,7 @@ class NoteDetailViewController: UIViewController {
 
     @IBOutlet weak var textView: UITextView!
 
-    let appDelegate = UIApplication.shared.delegate as! AppDelegate
-
-    let text = Variable("")
-    var note: Note!
-
-    var viewModel: ViewModel!
+    var index = 0
     let disposeBag = DisposeBag()
 
     override func viewDidLoad() {
@@ -27,43 +22,25 @@ class NoteDetailViewController: UIViewController {
 
         navigationItem.largeTitleDisplayMode = .never
 
-        textView.text = text.value
-
-        textView.rx.text.orEmpty
-            .bind(to: text)
+        Model.shared.dataSource.asObservable()
+            .map { $0[self.index] }
+            .bind(to: textView.rx.text)
             .disposed(by: disposeBag)
 
-        text.asObservable()
-            .distinctUntilChanged()
-            .debounce(1, scheduler: MainScheduler.instance) // TODO: what are the differences between different schedulers?
-            .subscribe(onNext: { string in
-                self.save(text: string)
+        textView.rx.text.orEmpty.asObservable()
+            .subscribe(onNext: { text in
+                Model.shared.dataSource.value[self.index] = text
             })
             .disposed(by: disposeBag)
-    }
 
-    func save(text: String) {
+//        textView.rx.text.orEmpty.asObservable()
+//            .distinctUntilChanged()
+//            .debounce(1, scheduler: MainScheduler.instance) // TODO: what are the differences between different schedulers?
+//            .subscribe(onNext: { text in
+//                //                self.viewModel.save(text: text, to: self.note)
+//            })
+//            .disposed(by: disposeBag)
 
-        let context = appDelegate.persistentContainer.viewContext
-        context.perform {
-
-            // TODO: refactor this?
-            if text.isEmpty {
-                if self.note != nil {
-                    context.delete(self.note)
-                    self.note = nil
-                    self.viewModel.refreshDataSource()
-                }
-                return
-            }
-
-            if self.note == nil {
-                self.note = Note(context: context)
-            }
-
-            self.note?.text = text
-            try? context.save()
-            self.viewModel.refreshDataSource()
-        }
+        textView.becomeFirstResponder()
     }
 }

@@ -19,7 +19,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // TODO: core data is cleared on app start, remove this later
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Note")
         let request = NSBatchDeleteRequest(fetchRequest: fetchRequest)
-        try! persistentContainer.viewContext.execute(request)
+        try? persistentContainer.viewContext.execute(request)
+
+        let context = persistentContainer.newBackgroundContext()
+        let note1 = Note(context: context)
+        note1.text = "note1"
+        let note2 = Note(context: context)
+        note2.text = "note2"
+        try? context.save()
 
         return true
     }

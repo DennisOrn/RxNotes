@@ -15,7 +15,6 @@ class NoteListViewController: UIViewController {
     @IBOutlet weak var addButton: UIBarButtonItem!
     @IBOutlet weak var tableView: UITableView!
 
-    let viewModel = ViewModel()
     let disposeBag = DisposeBag()
 
     override func viewDidLoad() {
@@ -25,13 +24,11 @@ class NoteListViewController: UIViewController {
         navigationController?.navigationBar.prefersLargeTitles = true
         title = "Notes"
 
-        addButton.rx.tap
-            .subscribe { indexPath in
-                self.performSegue(withIdentifier: "Note detail", sender: nil)
-            }
-            .disposed(by: disposeBag)
+//        addButton.rx.tap
+//            .subscribe { indexPath in self.performSegue(withIdentifier: "Note detail", sender: nil) }
+//            .disposed(by: disposeBag)
 
-        viewModel.dataSource.asObservable()
+        Model.shared.dataSource.asObservable()
             .bind(to: tableView.rx.items(cellIdentifier: "Cell", cellType: UITableViewCell.self)) { row, element, cell in
                 cell.textLabel?.text = "\(element)"
             }
@@ -46,11 +43,12 @@ class NoteListViewController: UIViewController {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "Note detail" {
-            guard let destinationVC = segue.destination as? NoteDetailViewController else { return }
-            destinationVC.viewModel = viewModel
-            if let row = sender as? Int {
-                destinationVC.text.value = viewModel.dataSource.value[row]
-            }
+
+            guard
+                let destinationVC = segue.destination as? NoteDetailViewController,
+                let row = sender as? Int else { return }
+
+            destinationVC.index = row
         }
     }
 }

@@ -10,7 +10,6 @@
 import Foundation
 import CoreData
 
-
 extension Note {
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<Note> {
@@ -18,5 +17,4 @@ extension Note {
     }
 
     @NSManaged public var text: String?
-
 }
