@@ -24,9 +24,9 @@ class NoteListViewController: UIViewController {
         navigationController?.navigationBar.prefersLargeTitles = true
         title = "Notes"
 
-//        addButton.rx.tap
-//            .subscribe { indexPath in self.performSegue(withIdentifier: "Note detail", sender: nil) }
-//            .disposed(by: disposeBag)
+        addButton.rx.tap
+            .subscribe { indexPath in self.performSegue(withIdentifier: "Note detail", sender: nil) }
+            .disposed(by: disposeBag)
 
         Model.shared.dataSource.asObservable()
             .bind(to: tableView.rx.items(cellIdentifier: "Cell", cellType: UITableViewCell.self)) { row, element, cell in
@@ -43,12 +43,10 @@ class NoteListViewController: UIViewController {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "Note detail" {
-
-            guard
-                let destinationVC = segue.destination as? NoteDetailViewController,
-                let row = sender as? Int else { return }
-
-            destinationVC.index = row
+            guard let destinationVC = segue.destination as? NoteDetailViewController else { return }
+            if let row = sender as? Int {
+                destinationVC.index = row
+            }
         }
     }
 }
