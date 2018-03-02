@@ -39,6 +39,12 @@ class NoteListViewController: UIViewController {
                 self.performSegue(withIdentifier: "Note detail", sender: indexPath.element?.row)
             }
             .disposed(by: disposeBag)
+
+        tableView.rx.itemDeleted
+            .subscribe { event in
+                Model.shared.dataSource.value.remove(at: event.element!.row)
+            }
+            .disposed(by: disposeBag)
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
