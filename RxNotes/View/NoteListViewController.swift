@@ -48,8 +48,14 @@ class NoteListViewController: UIViewController {
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+
         if segue.identifier == "Note detail" {
-            guard let destinationVC = segue.destination as? NoteDetailViewController else { return }
+
+            guard
+                let navigationController = segue.destination as? UINavigationController,
+                let destinationVC = navigationController.topViewController as? NoteDetailViewController
+                else { return }
+
             if let row = sender as? Int {
                 destinationVC.index = row
             }

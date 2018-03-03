@@ -13,6 +13,7 @@ import UIKit
 class NoteDetailViewController: UIViewController {
 
     @IBOutlet weak var textView: UITextView!
+    @IBOutlet weak var doneButton: UIBarButtonItem!
 
     var index: Int?
     let disposeBag = DisposeBag()
@@ -36,6 +37,12 @@ class NoteDetailViewController: UIViewController {
                     Model.shared.dataSource.value.append(event.element ?? "")
                     self.index = Model.shared.dataSource.value.count - 1
                 }
+            }
+            .disposed(by: disposeBag)
+
+        doneButton.rx.tap
+            .subscribe { event in
+                self.dismiss(animated: true)
             }
             .disposed(by: disposeBag)
     }

@@ -57,7 +57,7 @@
                     <connections>
                         <outlet property="addButton" destination="GvT-u9-Ea7" id="JQq-DV-PWz"/>
                         <outlet property="tableView" destination="Cda-Wd-S3L" id="fsS-c0-8Rp"/>
-                        <segue destination="s9w-V6-ItQ" kind="show" identifier="Note detail" id="EYN-cY-xZK"/>
+                        <segue destination="LSk-xu-hge" kind="presentation" identifier="Note detail" id="EYN-cY-xZK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -73,7 +73,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="860-j9-xPn">
-                                <rect key="frame" x="-0.66666666666665719" y="88" width="375.33333333333326" height="690"/>
+                                <rect key="frame" x="10" y="98" width="355" height="670"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -81,20 +81,24 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="860-j9-xPn" firstAttribute="width" secondItem="2vn-ed-sci" secondAttribute="width" id="0Z1-31-Ive"/>
-                            <constraint firstItem="860-j9-xPn" firstAttribute="height" secondItem="2vn-ed-sci" secondAttribute="height" id="1dU-ha-kcQ"/>
-                            <constraint firstItem="860-j9-xPn" firstAttribute="centerX" secondItem="2vn-ed-sci" secondAttribute="centerX" id="SnE-em-24l"/>
-                            <constraint firstItem="860-j9-xPn" firstAttribute="centerY" secondItem="2vn-ed-sci" secondAttribute="centerY" id="dcf-dC-bX1"/>
+                            <constraint firstItem="860-j9-xPn" firstAttribute="top" secondItem="2vn-ed-sci" secondAttribute="top" constant="10" id="Of0-Jg-CX3"/>
+                            <constraint firstItem="2vn-ed-sci" firstAttribute="trailing" secondItem="860-j9-xPn" secondAttribute="trailing" constant="10" id="OkM-cm-VQ6"/>
+                            <constraint firstItem="860-j9-xPn" firstAttribute="leading" secondItem="2vn-ed-sci" secondAttribute="leading" constant="10" id="dzH-2y-HTP"/>
+                            <constraint firstItem="2vn-ed-sci" firstAttribute="bottom" secondItem="860-j9-xPn" secondAttribute="bottom" constant="10" id="e72-hq-k5o"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="2vn-ed-sci"/>
                     </view>
+                    <navigationItem key="navigationItem" id="CGo-8l-lOT">
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="daa-7N-QgY"/>
+                    </navigationItem>
                     <connections>
+                        <outlet property="doneButton" destination="daa-7N-QgY" id="jcA-1t-JcA"/>
                         <outlet property="textView" destination="860-j9-xPn" id="pOg-In-IsL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="z74-Du-az6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1276" y="100"/>
+            <point key="canvasLocation" x="2191" y="-21"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="1tY-4u-5YO">
@@ -113,6 +117,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="smx-lJ-Z51" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-278" y="100"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="fLB-3d-y8U">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="LSk-xu-hge" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="vb4-Uv-arT">
+                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="s9w-V6-ItQ" kind="relationship" relationship="rootViewController" id="zz5-Dc-GyU"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hqn-V5-ghm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1382" y="-21"/>
         </scene>
     </scenes>
 </document>
