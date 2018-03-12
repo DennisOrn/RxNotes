@@ -22,6 +22,10 @@ class NoteListViewController: UIViewController {
 
         // TODO: clicking on the notch makes the list scroll too far up
         navigationController?.navigationBar.prefersLargeTitles = true
+        navigationController?.navigationBar.barTintColor = UIColor(red: 112/255, green: 130/255, blue: 56/255, alpha: 1)
+        navigationController?.navigationBar.tintColor = UIColor.white
+        navigationController?.navigationBar.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
+        navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
         title = "Notes"
 
         addButton.rx.tap

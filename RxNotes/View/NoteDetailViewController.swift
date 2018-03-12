@@ -22,6 +22,8 @@ class NoteDetailViewController: UIViewController {
         super.viewDidLoad()
 
         navigationItem.largeTitleDisplayMode = .never
+        navigationController?.navigationBar.barTintColor = UIColor(red: 112/255, green: 130/255, blue: 56/255, alpha: 1)
+        navigationController?.navigationBar.tintColor = UIColor.white
         textView.becomeFirstResponder()
 
         // A binding from the model to the textview is unnecessary, just set the text once.
@@ -42,6 +44,7 @@ class NoteDetailViewController: UIViewController {
 
         doneButton.rx.tap
             .subscribe { event in
+                self.textView.resignFirstResponder()
                 self.dismiss(animated: true)
             }
             .disposed(by: disposeBag)
